@@ -1,0 +1,46 @@
+.container
+{
+    height: 375px;
+    width: 300px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px rgba(39, 37, 37, 0.648);
+}
+.row
+{
+    height: 75px;
+    width: 300px;
+}
+.col
+{
+    height: 75px;
+    width: 75px;
+    background-color: rgba(42, 42, 42, 0.695);
+    font-family: 'Lato', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    font-weight: 900;
+}
+#ip
+{
+    height: 60px;
+    width: 285px;
+    position: relative;
+    left: -4px;
+    top: 5px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.265);
+}
+.btn
+{
+    height: 60px;
+    width: 62px;
+    position: relative;
+    left: -5px;
+    box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.265);
+}
+.btn-success
+{
+    box-shadow: inset 0px 0px 7px rgba(255, 255, 255, 0.158);
+    background-color: #1eb870;
+}
