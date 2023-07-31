@@ -27,7 +27,7 @@ body
     font-weight: 900;
 }
 /* Text box size */
-#ip
+#display
 {
     height: 60px;
     width: 285px;
@@ -37,7 +37,7 @@ body
     border-radius: 3px;
     border: none;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.348);
-    background-color: rgb(244, 244, 244);
+    background-color: #fff;
 }
 /* calc buttons */
 .btn
