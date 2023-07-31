@@ -13,63 +13,65 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <input id="ip" type="text">
+                <input type="text" name="" id="display">
             </div>
         </div>
         <div class="row a">
             <div class="col">
-                <button type="button" class="btn btn-light">C</button>
+                <button type="button" class="btn btn-light" id="clear">C</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light"><--</button>
+                <button type="button" class="btn btn-light" id="backspace"><--</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">%</button>
+                <button type="button" class="btn btn-light" onclick="display('%')">%</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">/</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-light">7</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-light">8</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-light">9</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-light">X</button>
+                <button type="button" class="btn btn-light" onclick="display('/')">/</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-light">4</button>
+                <button type="button" class="btn btn-light" onclick="display('7')">7</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">5</button>
+                <button type="button" class="btn btn-light" onclick="display('8')">8</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">6</button>
+                <button type="button" class="btn btn-light" onclick="display('9')">9</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">-</button>
+                <button type="button" class="btn btn-light" onclick="display('X')">X</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-light">1</button>
+                <button type="button" class="btn btn-light" onclick="display('4')">4</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">2</button>
+                <button type="button" class="btn btn-light" onclick="display('5')">5</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">3</button>
+                <button type="button" class="btn btn-light" onclick="display('6')">6</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">+</button>
+                <button type="button" class="btn btn-light" onclick="display('-')">-</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-light" id="1" onclick="display('1')">1</button>
+                <!-- recent -->
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-light" id="2" onclick="display('2')">2</button>
+                <!-- recent -->
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-light" onclick="display('3')">3</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-light" onclick="display('+')">+</button>
             </div>
         </div>
         <div class="row">
@@ -77,15 +79,116 @@
                 <button type="button" class="btn btn-light">Sci</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">0</button>
+                <button type="button" class="btn btn-light" onclick="display('0')">0</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-light">.</button>
+                <button type="button" class="btn btn-light" onclick="display('.')">.</button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-success">=</button>
+                <button type="button" class="btn btn-success" onclick="calc()">=</button>
             </div>
         </div>
     </div>
+    <script>
+        function display(v)
+        {
+            // console.log(v);
+            document.getElementById("display").value+=v;
+            // += appends the next elements in the text boxg
+        }
+        // clear button
+        var clr=document.getElementById("clear");
+        // clears the value
+        clr.addEventListener("click",rem_elmt);
+        var txt=document.getElementById("display");
+        function rem_elmt()
+        {
+            txt.value="";
+        }
+        // for backspacing the value
+        var b=document.getElementById("backspace");
+        b.addEventListener("click",backspace);
+        function backspace()
+        {
+            var x=txt.value;
+            txt.value=x.slice(0,-1);
+        }
+        // Calculation
+        function calc()
+        {
+            var term=document.getElementById("display").value;
+            // console.log(term.length);
+            var flag=false;
+            for(var i=0;i<term.length;i++)
+            {
+                if(term[i]=='+')
+                {
+                    add(term);
+                    flag=true;
+                    break;
+                }
+                else if(term[i]=='-')
+                {
+                    sub(term)
+                    flag=true
+                    break;;
+                }
+                else if(term[i]=='X')
+                {
+                    mul(term);
+                    flag=true;
+                    break;
+                }
+                else if(term[i]=='/')
+                {
+                    div(term);
+                    flag=true;
+                    break;
+                }
+                else if(term[i]=='%')
+                {
+                    mod(term);
+                    flag=true;
+                    break;
+                }
+            }
+            // for syntax error
+            if(flag==false)
+            {
+                txt.value="Syntax Error";
+            }
+        }
+        function add(t)
+        {
+            var a=t.split('+');
+            var val=Number(a[0])+Number(a[1]);
+            txt.value=val;
+        }
+        function sub(t)
+        {
+            var a=t.split('-');
+            var val=Number(a[0])-Number(a[1]);
+            txt.value=val;
+        }
+        function mul(t)
+        {
+            var a=t.split('X');
+            var val=Number(a[0])*Number(a[1]);
+            txt.value=val;
+        }
+        function div(t)
+        {
+            var a=t.split('/');
+            var val=Number(a[0])/Number(a[1]);
+            txt.value=val;
+        }
+        function mod(t)
+        {
+            var a=t.split('%');
+            var val=Number(a[0])%Number(a[1]);
+            txt.value=val;
+        }
+        // recent
+    </script>
 </body>
 </html>
